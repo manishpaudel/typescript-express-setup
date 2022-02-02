@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 import config from "config";
-import { boolean } from "zod";
 
 //for typescript type matching
 //mongoose generally doesn't prefer extending mongoose.Document
@@ -55,4 +54,4 @@ userSchema.methods.authenticate = async (pw: string): Promise<Boolean> => {
   return bcrypt.compare(pw, user.password).catch((e) => false);
 };
 
-export default mongoose.model("User", userSchema);
+export default mongoose.model<UserDocument>("User", userSchema);
